@@ -98,7 +98,7 @@ namespace FormsExample
             this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
 			//Final content
             this.Content = scrollView; 
-
+			//sds
 		}
 
 	}
