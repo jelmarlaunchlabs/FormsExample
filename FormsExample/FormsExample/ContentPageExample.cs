@@ -8,88 +8,70 @@ namespace FormsExample
 	{
 		public ContentPageExample()
 		{
+			Grid grid = new Grid {
+				BackgroundColor = Color.Aqua,
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions=LayoutOptions.Center,
+//				VerticalOptions=LayoutOptions.FillAndExpand,
+				RowDefinitions={new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto}},
+				ColumnDefinitions={new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto}}
+			};
 
-            Label labelLarge = new Label
-            {
-                Text = "Label",
-                FontSize = 40,
-				HorizontalOptions = LayoutOptions.Center,BackgroundColor=Color.Green
-            };
+			Grid grid1 = new Grid {
+				BackgroundColor = Color.Aqua,
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions=LayoutOptions.Center,
+				//				VerticalOptions=LayoutOptions.FillAndExpand,
+				RowDefinitions={new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto}},
+				ColumnDefinitions={new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto}}
+			};
 
-			Label labelSmall = new Label
-			{
-				Text = "This control is great for\n" +
-					"displaying one or more\n" +
-					"lines of text.",
-				FontSize = 20,
-				HorizontalOptions = LayoutOptions.CenterAndExpand
-			}; 
-					
-            Button button = new Button
-            {
-	            Text = "Make It So",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Button)),
-	            HorizontalOptions = LayoutOptions.Center,
-	            VerticalOptions = LayoutOptions.Fill
-            };
+			grid.Children.Add (new Label{Text="A"},0,0);
+			grid.Children.Add (new Label{Text="A"},0,1);
+			grid.Children.Add (new Label{Text="A"},0,2);
+			grid.Children.Add (new Label{Text="A"},0,3);
+//			grid.Children.Add (new Button{Text="A",VerticalOptions=LayoutOptions.End,HorizontalOptions=LayoutOptions.End},0,4);
 
-            button.Clicked += (sender, args) =>
-            {
-	            button.Text = "It is so!";
-            }; 
+			grid.Children.Add (new Label{Text="A"},1,0);
+			grid.Children.Add (new Label{Text="A"},1,1);
+			grid.Children.Add (new Label{Text="A"},1,2);
+			grid.Children.Add (new Label{Text="A"},1,3);
+			grid.Children.Add (new Label{Text="A"},1,4);
 
-            Entry entry = new Entry
-            {
-	            Placeholder = "Username",
-	            VerticalOptions = LayoutOptions.Center,
-	            Keyboard = Keyboard.Text
-            }; 
+			grid.Children.Add (new Label{Text="A"},2,0);
+			grid.Children.Add (new Label{Text="A"},2,1);
+			grid.Children.Add (new Label{Text="A"},2,2);
+			grid.Children.Add (new Label{Text="A"},2,3);
+			grid.Children.Add (new Label{Text="A"},2,4);
 
-            BoxView boxView = new BoxView
-            {
-	            Color = Color.Silver,
-	            WidthRequest = 150,
-	            HeightRequest = 150,
-	            HorizontalOptions = LayoutOptions.StartAndExpand,
-	            VerticalOptions = LayoutOptions.Fill
-            }; 
+			StackLayout stackLayout = new StackLayout {
+				Children = {
+					new StackLayout{
+						BackgroundColor=Color.Red,
+						//						HeightRequest=140,
+						Children={
+							grid,
+						}
 
-            Image image = new Image
-            {
-	            Source = "monkey.png",  
-	            Aspect = Aspect.AspectFit,
-	            HorizontalOptions = LayoutOptions.End,
-	            VerticalOptions = LayoutOptions.Fill
-            };
+					},
+					new StackLayout{
+						BackgroundColor=Color.Red,
+						//						HeightRequest=140,
+						Children={
+							grid,
+						}
+					}
+				},
+				BackgroundColor=Color.Blue,
+				Padding=10,
+//				HorizontalOptions=LayoutOptions.Center,
+//				VerticalOptions=LayoutOptions.Center
+			};
 
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped +=  async (sender, e) =>
-            {
-                image.Opacity = .5;
-                await Task.Delay(2000);
-                image.Opacity = 1;
-            };
-            image.GestureRecognizers.Add(tapGestureRecognizer);
-
-            StackLayout stackLayout = new StackLayout
-            {
-	            Children = 
-	            {
-					labelLarge,
-		            labelSmall,
-		            button,
-		            entry,
-		            boxView,
-		            image 
-	            },
-	            HeightRequest = 150000
-            }; 
-
-            ScrollView scrollView = new ScrollView
-            {
+            ScrollView scrollView = new ScrollView{
 	            //BackgroundColor = Color.White,
 	            VerticalOptions = LayoutOptions.FillAndExpand,
-	            Content = stackLayout  
+				Content = stackLayout
             }; 
 
             //this.BackgroundColor = Color.Black; //White
