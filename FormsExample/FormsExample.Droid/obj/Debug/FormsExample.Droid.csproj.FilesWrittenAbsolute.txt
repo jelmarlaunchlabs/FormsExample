@@ -22,3 +22,4 @@
 /Users/lldm40/Projects/FormsExample/FormsExample/FormsExample.Droid/bin/Debug/Xamarin.Forms.Xaml.dll
 /Users/lldm40/Projects/FormsExample/FormsExample/FormsExample.Droid/bin/Debug/FormsExample.dll
 /Users/lldm40/Projects/FormsExample/FormsExample/FormsExample.Droid/bin/Debug/FormsExample.dll.mdb
+/Users/lldm40/Projects/FormsExample/FormsExample/FormsExample.Droid/obj/Debug/res/layout/linearlayoutexample.xml

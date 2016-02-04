@@ -15,7 +15,16 @@ public final class R {
         public static final int monkey=0x7f020001;
         public static final int monoandroidsplash=0x7f020002;
     }
+    public static final class id {
+        public static final int button1=0x7f050001;
+        public static final int button2=0x7f050002;
+        public static final int linearLayout1=0x7f050000;
+        public static final int linearLayout2=0x7f050003;
+    }
+    public static final class layout {
+        public static final int linearlayoutexample=0x7f030000;
+    }
     public static final class style {
-        public static final int Mono_Android_Theme_Splash=0x7f030000;
+        public static final int Mono_Android_Theme_Splash=0x7f040000;
     }
 }

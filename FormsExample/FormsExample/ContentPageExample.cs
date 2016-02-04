@@ -6,24 +6,32 @@ namespace FormsExample
 {
 	class ContentPageExample : ContentPage
 	{
+		private StackLayout st;
+		private Grid grid; 
+
 		public ContentPageExample()
 		{
-			Grid grid = new Grid {
-				BackgroundColor = Color.Aqua,
-				HorizontalOptions = LayoutOptions.Center,
-				VerticalOptions=LayoutOptions.Center,
-//				VerticalOptions=LayoutOptions.FillAndExpand,
-				RowDefinitions={new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto}},
-				ColumnDefinitions={new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto}}
+			Label lbl = new Label {
+				Text = "Output"
 			};
 
-			Grid grid1 = new Grid {
+			grid = new Grid {
 				BackgroundColor = Color.Aqua,
 				HorizontalOptions = LayoutOptions.Center,
-				VerticalOptions=LayoutOptions.Center,
-				//				VerticalOptions=LayoutOptions.FillAndExpand,
-				RowDefinitions={new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto},new RowDefinition{Height=GridLength.Auto}},
-				ColumnDefinitions={new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto},new ColumnDefinition{Width=GridLength.Auto}}
+				VerticalOptions = LayoutOptions.Center,
+//				VerticalOptions=LayoutOptions.FillAndExpand,
+				RowDefinitions = {
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto },
+					new RowDefinition{ Height = GridLength.Auto }
+				},
+				ColumnDefinitions = {
+					new ColumnDefinition{ Width = GridLength.Auto },
+					new ColumnDefinition{ Width = GridLength.Auto },
+					new ColumnDefinition{ Width = GridLength.Auto }
+				}
 			};
 
 			grid.Children.Add (new Label{Text="A"},0,0);
@@ -44,26 +52,73 @@ namespace FormsExample
 			grid.Children.Add (new Label{Text="A"},2,3);
 			grid.Children.Add (new Label{Text="A"},2,4);
 
+			st = new StackLayout {
+				BackgroundColor = Color.Red,
+				HeightRequest = 140,
+				Children = {
+					grid
+				},
+				Padding = 0
+
+			};
+			Button btn = new Button {
+				Text="Testing Button",
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.EndAndExpand
+			};
+//			btn.Clicked += (sender, e) => {this.st.Padding = this.st.Padding==0?10:0;};
+			btn.Clicked += new EventHandler (tapG);
+			ContentView cv = new ContentView {
+				BackgroundColor=Color.Gray,
+				Content = new Label
+				{
+					Text = "This is ContentView",
+					FontSize = 20,
+					FontAttributes = FontAttributes.Bold,
+					TextColor = Color.White
+				},
+			};
+
+			Frame frm = new Frame {
+				Content = new Label{ Text = "This is A Frame", FontSize = 40 },
+				OutlineColor = Color.Red,
+				HasShadow = true
+
+			};
+			Picker pkr = new Picker{ Title = "Option" };
+			pkr.Items.Add ("1");
+			pkr.Items.Add ("2");
+			pkr.Items.Add ("3");
+			pkr.Items.Add ("4");
+
+			DatePicker dp = new DatePicker {
+				Format = "D"
+			};
+			TimePicker timePicker = new TimePicker {
+				Format = "T"
+			};
+			timePicker.PropertyChanged += (sender, e) =>
+			{
+				if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
+				{
+					lbl.Text = timePicker.Time.ToString();
+				}
+			};
+
 			StackLayout stackLayout = new StackLayout {
 				Children = {
-					new StackLayout{
-						BackgroundColor=Color.Red,
-						//						HeightRequest=140,
-						Children={
-							grid,
-						}
-
-					},
-					new StackLayout{
-						BackgroundColor=Color.Red,
-						//						HeightRequest=140,
-						Children={
-							grid,
-						}
-					}
+					lbl,
+					st,
+					cv,
+					frm,
+					pkr,
+					dp,
+					timePicker,
+					btn,
 				},
 				BackgroundColor=Color.Blue,
-				Padding=10,
+				Padding=30,
+//				Orientation = StackOrientation.Horizontal
 //				HorizontalOptions=LayoutOptions.Center,
 //				VerticalOptions=LayoutOptions.Center
 			};
@@ -83,6 +138,10 @@ namespace FormsExample
 			//sds
 		}
 
+		void tapG(object sender,EventArgs e)
+		{
+			st.Padding=(st.Padding==0?10:0);
+		}
 	}
-} 
+}
 
