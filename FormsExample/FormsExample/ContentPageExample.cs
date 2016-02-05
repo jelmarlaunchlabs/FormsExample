@@ -141,6 +141,7 @@ namespace FormsExample
 		void tapG(object sender,EventArgs e)
 		{
 			st.Padding=(st.Padding==0?10:0);
+			DisplayAlert ("Toast", "Hellow there", "OK","Cancel");
 		}
 	}
 }
